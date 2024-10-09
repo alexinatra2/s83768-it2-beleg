@@ -2,12 +2,12 @@ package rtp;
 
 import java.util.HashMap;
 
-public class FECHandler extends FecHandlerDemo {
-    public FECHandler(int size) {
+public class FecHandler extends FecHandlerDemo {
+    public FecHandler(int size) {
         super(size);
     }
 
-    public FECHandler(boolean useFec) {
+    public FecHandler(boolean useFec) {
         super(useFec);
     }
 
