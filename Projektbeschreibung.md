@@ -91,8 +91,15 @@ S: RTSP/1.0 200 OK
  : Content-Type: application/sdp
  : Content-Length: 460
  :
- : v=0 
+ : v=0
+ : [...]
  : m=video 0 RTP/AVP 96
+ : a=control:trackID=0
+ : a=rtpmap:26 JPEG/90000
+ : a=framerate:25
+ : m=audio 0 RTP/AVP 0
+ : a=control:trackID=1
+ : a=rtpmap:0 PCMU/8000
  : [...]
 
    
