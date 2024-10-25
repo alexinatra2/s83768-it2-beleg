@@ -174,6 +174,7 @@ abstract class RtspDemo {
    * end request with BufferedWriter.flush()
    * Variables to use:
    *   url: RTSP-URL
+   *   RTSPSeqNb: Sequence number (CSeq)
    *   RTSPid: Session number (0 - no active session)
    *   RTP_RCV_PORT:  RTP-Port for receiving the media stream at the client
    *   RTSPBufferWriter: Stream for sending the RTSP-data
