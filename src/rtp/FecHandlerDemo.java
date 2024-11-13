@@ -158,7 +158,10 @@ abstract class FecHandlerDemo {
    * Checks if the RTP packet is reparable
    *
    * @param nr Sequence Nr.
+   * @param mediaPackets   Storage of received media-RTPs
    * @return true if possible
+   *
+   * Usefull member variables: fecList
    */
   abstract boolean checkCorrection(int nr, HashMap<Integer, RtpPacket> mediaPackets);
 
@@ -166,12 +169,15 @@ abstract class FecHandlerDemo {
    * Build an RTP packet from FEC and group
    *
    * @param nr Sequence Nr.
+   * @param mediaPackets   Storage of received media-RTPs
    * @return RTP packet
+   *
+   * Usefull member variables: fecList, fecNr, fecStack
    */
   abstract RtpPacket correctRtp(int nr, HashMap<Integer, RtpPacket> mediaPackets);
 
   /**
-   * It is necessary to clear all data structures
+   * It is necessary to clear all data structures (in case of memory shortage)
    *
    * @param nr Media Sequence Nr.
    */
