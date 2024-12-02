@@ -74,6 +74,7 @@ abstract class JpegDisplayDemo {
     // set transparency in case of error concealment
     JpegDisplayDemo js = new JpegDisplay();
     combined = (eco) ? js.setTransparency(lastImage, newImage, list) : newImage;
+    lastImage = combined;  // update
     return setText(combined, rs.requestedFrames, list.toString());
   }
 
