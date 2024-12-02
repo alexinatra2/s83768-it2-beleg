@@ -158,6 +158,7 @@ Damit trotz Fehlerkorrektur fehlende Pakete nicht zu einem störenden Bild führ
 Dazu dient die Methode setTransparency der Klasse `JpegDisplay` (abgeleitet von `JpegDisplayDemo`). Dieser wird das aktuelle Bild und das Vorgängerbild übergeben, sowie eine Liste an fehlenden Bildteilen. Dies funktioniert allerdings nur mit MJPEG-Videos, welche Restart-Marker beinhalten.
 Versuchen Sie anhand dieser Informationen das aktuelle Bild so zu modifizieren, dass Fehler möglichst wenig stören.
 Bei welcher Paketfehlerwahrscheinlichkeit ist das Video mit Fehlerkaschierung und FEC (k=2) noch in guter Qualität darstellbar?
+**Hinweis**: In der Klasse `JpegDisplayDemo` wurde eine Korrektur vorgenommen, bitte Klasse aktualisieren.
 
 ### 9. Optional: Kompatibilität des Demoprojektes
 Prüfen Sie die Kompatibilität des Clients und Servers mit frei verfügbaren RTSP-Playern/-Servern (z.B. VLC-Player oder FFMPEG) und versuchen Sie eventuelle Probleme zu analysieren. Dokumentieren Sie die Ergebnisse.
