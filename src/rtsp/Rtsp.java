@@ -1,8 +1,11 @@
 package rtsp;
 
+import video.VideoMetadata;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.net.URI;
 import java.util.logging.Level;
 
@@ -124,5 +127,18 @@ public class Rtsp extends RtspDemo {
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Error sending RTSP request: " + e.getMessage());
         }
+    }
+
+    @Override
+    String getDescribe(VideoMetadata meta, int RTP_dest_port) {
+        double duration = meta.getDuration();
+        int framerate = meta.getFramerate();
+        StringWriter body = new StringWriter();
+        StringWriter header = new StringWriter();
+
+        header.write("Content-Type: " + "application/sdp" + CRLF);
+        header.write("Content-Length: " + body.toString().length() + CRLF);
+        header.write(CRLF);
+        return super.getDescribe(meta, RTP_dest_port);
     }
 }
