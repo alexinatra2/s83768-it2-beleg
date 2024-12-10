@@ -311,6 +311,7 @@ public class RtpHandler {
         if (packetList.get(0) == null || packetList.get(packetList.size()-1) == null ) {
             logger.log(Level.WARNING, "Nullpointer -> Check!");
             return null;
+        }   
         logger.log(Level.FINER, "PLAY: get RTPs from " + packetList.get(0).getsequencenumber()
             + " to " + packetList.get(packetList.size()-1).getsequencenumber());
 
