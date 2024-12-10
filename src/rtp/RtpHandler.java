@@ -308,6 +308,9 @@ public class RtpHandler {
         } else logger.log(Level.FINE, "PLAY: RTP list size for rtp: " +playbackIndex + " " + packetList.size());
 
         // TODO sometimes nullpointer exception
+        if (packetList.get(0) == null || packetList.get(packetList.size()-1) == null ) {
+            logger.log(Level.WARNING, "Nullpointer -> Check!");
+            return null;
         logger.log(Level.FINER, "PLAY: get RTPs from " + packetList.get(0).getsequencenumber()
             + " to " + packetList.get(packetList.size()-1).getsequencenumber());
 
