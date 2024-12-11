@@ -166,6 +166,9 @@ Prüfen Sie die Kompatibilität des Clients und Servers mit frei verfügbaren RT
 ### 10. Optional: Vorschläge
 Manchen Sie konkrete Vorschläge um den Beleg in Zukunft interessanter zu machen.
 
+### 11. Dokumentation
+Fügen Sie dem Projekt eine Dokumentationsdatei mit den Erkenntnissen aus der Belegbearbeitung hinzu. Diese Dokumentation kann als Markdown-Datei angelegt werden, wobei sie mit Github anzeigbar sein muss. Alternativ legen Sie die Dokumentation als PDF bei.
+
 ### Hinweis 
 Falls Sie ein anderes Video nutzen wollen, ist dieses in das MJPEG-Format zu konvertieren.
 Eine Umcodierung zu MJPEG kann zum Beispiel mittels FFMPEG oder VLC-Player erfolgen. Eventuell müssen Sie die Auflösung des Videos verringern, damit die Bilder jeweils in ein UDP-Paket passen.
