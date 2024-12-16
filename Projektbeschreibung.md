@@ -2,7 +2,7 @@
 Im Praktikum werden Sie einen Client und Server für Videostreaming unter Nutzung des Real-Time-Streaming-Protokolls [RTSP](http://www.ietf.org/rfc/rfc2326.txt) implementieren. 
 Die eigentlichen Videodaten werden mittels Real-Time-Protokoll [RTP](http://www.ietf.org/rfc/rfc3550.txt) übertragen. Ein großer Teil der Funktionalität ist bereits als Quelltext vorhanden, so das RTSP-Protokoll für den Server, das RTP-Handling im Client sowie die Videoanzeige.
 Ihre Aufgabe besteht im Wesentlichen aus der Ergänzung der Quellcodes in den Punkten:
-* RTSP-Protokoll: vervollständigen
+* RTSP-Protokoll: Butto-Handler + Request vervollständigen
 * RTP-Protokoll: Headerdaten konfigurieren
 * FEC-Protokoll: Paketkorrektur implementieren
 * JPEG-Anzeige: Fehlerverdeckung im Client implementieren
@@ -21,17 +21,23 @@ Die bereitgestellten Kassen mit der Endung `Demo` sind abstrakte Klassen, die no
 * [Client](src/Client.java): Funktionalität des Clients mit Benutzerschnittstelle zum Senden der RTSP-Kommandos und Anzeige des Videos
 * [ClientView](src/ClientView.java): Client-GUI
 * [JpegDisplayDemo](src/JpegDisplayDemo.java): Funktionalität der Client-Videoanzeige (abstrakte Klasse)
+* JpegDisplay: TODO
 * [rtp.ReceptionStatistic](src/rtp/ReceptionStatistic.java): Bereitstellung von Empfangsstatistiken
 
-### Klassen für Server und Client
+### RTSP- und RTP-Klassen für Server und Client
 * [rtsp.RtspDemo](src/rtsp/RtspDemo.java): Implementierung des RTSP-Protokolls für Client und Server (abstrakte Klasse)
+* rtsp.Rtsp: TODO
 * [rtp.RtpHandler](src/rtp/RtpHandler.java): Verarbeitung von RTP-Paketen
 * [rtp.RtpPacketDemo](src/rtp/RtpPacketDemo.java): Funktionalität zur Unterstützung von RTP-Paketen (abstrakte Klasse)
+* rtp.RtpPacket: TODO
 * [rtp.FecHandlerDemo](src/rtp/FecHandlerDemo.java): Unterstützung der Fehlerkorrektur mittels FEC (abstrakte Klasse)
+* rtp.FECHandler: TODO
 * [rtp.FecPacket](src/rtp/FECpacket.java): Erweiterung der RTP-Klasse mit FEC-Funktionalität
 * [rtp.JpegFrame](src/rtp/JpegFrame): Codierung/Decodierung von JPEG-Bildern gemäß RFC-2435
 * [rtp.SrtpHandler](src/rtp/SrtpHandler.java): Verschlüsselung von RTP-Paketen
 * [rtp.JpegEncryptionHandler](src/rtp/JpegEncryptionHandler.java): Verschlüsselung von JPEG-Bildern (Quantisierungstabellen)
+
+  ### Utils
 * [video.VideoMetadata](src/video/VideoMetadata.java): Video-Metadaten wie Framerate und Abspieldauer
 * [utils.CustomLoggingHandler](src/utils/CustomLoggingHandler.java): Anpassung der Logger-Ausgaben für minimalen Overhead
 
@@ -91,8 +97,15 @@ S: RTSP/1.0 200 OK
  : Content-Type: application/sdp
  : Content-Length: 460
  :
- : v=0 
+ : v=0
+ : [...]
  : m=video 0 RTP/AVP 96
+ : a=control:trackID=0
+ : a=rtpmap:26 JPEG/90000
+ : a=framerate:25
+ : m=audio 0 RTP/AVP 0
+ : a=control:trackID=1
+ : a=rtpmap:0 PCMU/8000
  : [...]
 
    

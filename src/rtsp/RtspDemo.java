@@ -172,6 +172,13 @@ abstract class RtspDemo {
    * write Requests to the RTSPBufferedWriter-Stream
    * use logger.log() for logging the request to the console
    * end request with BufferedWriter.flush()
+   * Variables to use:
+   *   url: RTSP-URL
+   *   RTSPSeqNb: Sequence number (CSeq)
+   *   RTSPid: Session number (0 - no active session)
+   *   RTP_RCV_PORT:  RTP-Port for receiving the media stream at the client
+   *   RTSPBufferWriter: Stream for sending the RTSP-data
+   *   logger: logging device
    */
   public abstract void send_RTSP_request(String request_type);
 

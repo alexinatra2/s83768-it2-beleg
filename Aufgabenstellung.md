@@ -12,7 +12,7 @@ Im weiteren wird davon ausgegangen, dass die IDE Intellij verwendet wird.
   * Abhängigkeiten:
     * Webcam: com.github.sarxos:webcam-capture:0.3.12
     * JUnit:  org.junit.jupiter:junit-jupiter:5.9.0
-3. Sie erstellen die "leeren" Klassen `rtsp.Rtsp`, `rtp.RtpPacket`, `rtp.FECHandler` und `JpegDisplay` und leiten diese aus den abstrakten Klassen `rtsp.RtspDemo`, `rtp.RtpPacketDemo`, `FECHandlerDemo` und `JpegDisplayDemo` ab (Stichwort `extends`).  Das Projekt sollte danach kompilierbar und ausführbar sein.  
+3. Sie erstellen die "leeren" Klassen `rtsp.Rtsp`, `rtp.RtpPacket`, `rtp.FecHandler` und `JpegDisplay` und leiten diese aus den abstrakten Klassen `rtsp.RtspDemo`, `rtp.RtpPacketDemo`, `FecHandlerDemo` und `JpegDisplayDemo` ab (Stichwort `extends`).  Das Projekt sollte danach kompilierbar und ausführbar sein.  
 Unter einigen IDEs z.B. IntelliJ können Sie die Klassenrümpfe automatisch erstellen lassen mittels: Generate Contructors sowie implement Methods
 4. Sie konfigurieren die Kommandozeilenparameter für Client und Server wie in der [Projektbeschreibung](Projektbeschreibung.md#2.-programmstart) beschrieben.
 5. Sie erstellen in Ihrem Gitverzeichnis ein Unterverzeichnis mit dem Namen `videos` und legen in dieses das Beispielvideo `htw.mjpeg`, siehe Praktikumsdateien auf der HTW-IT2-Homepage.
@@ -158,12 +158,16 @@ Damit trotz Fehlerkorrektur fehlende Pakete nicht zu einem störenden Bild führ
 Dazu dient die Methode setTransparency der Klasse `JpegDisplay` (abgeleitet von `JpegDisplayDemo`). Dieser wird das aktuelle Bild und das Vorgängerbild übergeben, sowie eine Liste an fehlenden Bildteilen. Dies funktioniert allerdings nur mit MJPEG-Videos, welche Restart-Marker beinhalten.
 Versuchen Sie anhand dieser Informationen das aktuelle Bild so zu modifizieren, dass Fehler möglichst wenig stören.
 Bei welcher Paketfehlerwahrscheinlichkeit ist das Video mit Fehlerkaschierung und FEC (k=2) noch in guter Qualität darstellbar?
+**Hinweis**: In der Klasse `JpegDisplayDemo` wurde eine Korrektur vorgenommen, bitte Klasse aktualisieren.
 
 ### 9. Optional: Kompatibilität des Demoprojektes
 Prüfen Sie die Kompatibilität des Clients und Servers mit frei verfügbaren RTSP-Playern/-Servern (z.B. VLC-Player oder FFMPEG) und versuchen Sie eventuelle Probleme zu analysieren. Dokumentieren Sie die Ergebnisse.
 
 ### 10. Optional: Vorschläge
 Manchen Sie konkrete Vorschläge um den Beleg in Zukunft interessanter zu machen.
+
+### 11. Dokumentation
+Fügen Sie dem Projekt eine Dokumentationsdatei mit den Erkenntnissen aus der Belegbearbeitung hinzu. Diese Dokumentation kann als Markdown-Datei angelegt werden, wobei sie mit Github anzeigbar sein muss. Alternativ legen Sie die Dokumentation als PDF bei.
 
 ### Hinweis 
 Falls Sie ein anderes Video nutzen wollen, ist dieses in das MJPEG-Format zu konvertieren.
