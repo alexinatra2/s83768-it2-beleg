@@ -14,19 +14,15 @@ public class FecHandler extends FecHandlerDemo {
 
     @Override
     public boolean checkCorrection(int nr, HashMap<Integer, RtpPacket> mediaPackets) {
-        // Check if there is an FEC packet that corresponds to the missing RTP packet
-        if (fecNr.containsKey(nr)) {
-            // Get list of RTP packets related to this FEC packet
-            List<Integer> relatedRtpPackets = fecList.get(nr);
+        // Get list of RTP packets related to this FEC packet or an empty list if none are available
+        List<Integer> relatedRtpPackets = fecList.getOrDefault(nr, List.of());
 
-            // Count how many RTP packets are missing
-            long missingCount = relatedRtpPackets.stream()
-                    .filter(rtpNr -> !mediaPackets.containsKey(rtpNr)) // filter missing packets
-                    .count();
+        // Count how many RTP packets are missing
+        long missingCount = relatedRtpPackets.stream()
+                .filter(rtpNr -> !mediaPackets.containsKey(rtpNr)) // filter missing packets
+                .count();
 
-            return missingCount == 1;
-        }
-        return false;
+        return missingCount == 1;
     }
 
     @Override
