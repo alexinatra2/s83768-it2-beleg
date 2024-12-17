@@ -1,6 +1,6 @@
 #!/usr/local/bin/gnuplot --persist
 
-set title "Bildverlustwahrscheinlichkeit in Abhängigkeit von der Kanalverlustrate"
+set title "Ideale Bildverlustwahrscheinlichkeit in Abhängigkeit von der Kanalverlustrate"
 set xlabel "P_e (Kanalverlustwahrscheinlichkeit)"
 set ylabel "P_e (Bildverlustwahrscheinlichkeit)"
 set grid
