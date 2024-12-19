@@ -10,16 +10,11 @@ set grid
 set style data linespoints
 set key right bottom
 
+# Wir definieren die Gruppengrößen (k = 2, 6, 12, 48)
+k_values = "2 6 12 48"
+
 # Plot total and residual error rates for all k values
-plot \
-    "k2_data.dat" using 1:1 with linespoints title "Gesamtfehlerquote (k=2)" lc rgb "red", \
-    "k2_data.dat" using 1:($4/$2) with linespoints title "Restfehlerquote (k=2)" lc rgb "pink", \
-    "k6_data.dat" using 1:1 with linespoints title "Gesamtfehlerquote (k=6)" lc rgb "blue", \
-    "k6_data.dat" using 1:($4/$2) with linespoints title "Restfehlerquote (k=6)" lc rgb "cyan", \
-    "k12_data.dat" using 1:1 with linespoints title "Gesamtfehlerquote (k=12)" lc rgb "green", \
-    "k12_data.dat" using 1:($4/$2) with linespoints title "Restfehlerquote (k=12)" lc rgb "light-green", \
-    "k48_data.dat" using 1:1 with linespoints title "Gesamtfehlerquote (k=48)" lc rgb "orange", \
-    "k48_data.dat" using 1:($4/$2) with linespoints title "Restfehlerquote (k=48)" lc rgb "yellow"
+plot for [k in k_values] sprintf("k%s_data.dat", k) using 1:5 title sprintf("k = %s", k) with lines lw 2
     
 pause -1
 
