@@ -19,4 +19,3 @@ plot P_v(x, 2) lw 2 title "2 RTP-Pakete/Bild", \
      P_v(x, 10) lw 2 title "10 RTP-Pakete/Bild", \
      P_v(x, 20) lw 2 title "20 RTP-Pakete/Bild"
 
-pause -1
