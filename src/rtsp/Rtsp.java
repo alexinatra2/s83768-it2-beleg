@@ -131,14 +131,32 @@ public class Rtsp extends RtspDemo {
 
     @Override
     String getDescribe(VideoMetadata meta, int RTP_dest_port) {
-        double duration = meta.getDuration();
-        int framerate = meta.getFramerate();
-        StringWriter body = new StringWriter();
-        StringWriter header = new StringWriter();
+        StringWriter sdpBody = new StringWriter();
+        StringWriter response = new StringWriter();
 
-        header.write("Content-Type: " + "application/sdp" + CRLF);
-        header.write("Content-Length: " + body.toString().length() + CRLF);
-        header.write(CRLF);
-        return super.getDescribe(meta, RTP_dest_port);
+        // Build SDP body for MJPEG
+        sdpBody.write("v=0" + CRLF); // Protocol version
+        sdpBody.write("o=- 123456 123456 IN IP4 127.0.0.1" + CRLF); // Origin placeholder
+        sdpBody.write("s=MJPEG Video Stream" + CRLF); // Session name
+        sdpBody.write("i=Motion JPEG Stream Description" + CRLF); // Session information
+        sdpBody.write("t=0 0" + CRLF); // Time (start and end times)
+        sdpBody.write("m=video " + RTP_dest_port + " RTP/AVP " + MJPEG_TYPE + CRLF); // Media description for MJPEG
+        sdpBody.write("a=framerate:" + meta.getFramerate() + CRLF); // Frame rate attribute (custom)
+
+        // Additional placeholder for duration if needed
+        if (meta.getDuration() > 0) {
+            sdpBody.write("a=duration:" + meta.getDuration() + CRLF); // Custom attribute for duration
+        }
+
+        // Build headers
+        response.write("Content-Type: application/sdp" + CRLF);
+        response.write("Content-Length: " + sdpBody.toString().length() + CRLF);
+        response.write(CRLF);
+        response.write(sdpBody.toString());
+
+        // Log the response to the console
+        logger.log(Level.INFO, "DESCRIBE response:\n" + response);
+
+        return response.toString();
     }
 }
