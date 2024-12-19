@@ -49,7 +49,59 @@ Die Korrektureffizienz beträgt damit:
 Korrektureffizienz = 152 / 223 = 0,68161435
 ```
 
-### 6.2 Bestimmung der Verlustraten mittels Simulation
+### 6.2. Bestimmung der Verlustraten mittels Simulation
+
+In [diesem Diagram](./statistics/plot-6.2.gp) werden die Messungen aus
+für [k=2](./statistics/k2_data.dat), [k=6](./statistics/k6_data.dat), 
+[k=12](./statistics/k12_data.dat) und [k=48](./statistics/k48_data.dat) ausgewertet.
+
+Dabei wurden in den Messungsdaten je die Kanalverlustrate, der Paketindex, die Anzahl
+an verlorenen RTP-Paketen, die Anzahl an korrigierbaren RTP-Paketen und die Restfehlerwahrscheinlichkeit
+erfasst.
+
+```bash
+cd statistics
+gnuplot ./statistics/plot-6.2.gp
+```
+
+### 6.3. Abschätzung der zu erwartenden Verlustraten mittels theoretischer Betrachtung
+
+Die vereinfachte Formel für die Paketverlustwahrscheinlichkeit kann genutzt werden, 
+weil sie auf der Annahme basiert, dass Fehlerereignisse unabhängig sind und die Wahrscheinlichkeit
+für den Verlust von Paketen in einem FEC-geschützten Block direkt von der Kanalfehlerrate abhängt. 
+Für geringe Fehlerwahrscheinlichkeiten ist die Annahme, dass ein Paketverlust nur dann relevant ist, 
+wenn mehr als ein Paket in einem FEC-Block verloren geht, eine gute Näherung, da die Wahrscheinlichkeit 
+für mehrere Fehler in einem Block bei niedrigen Fehlerraten sehr gering ist.
+
+Für das Gnuplot Skript wurde daher die aus der Vorlesung vereinfachte Variante der Formel verwendet:
+
+`P = P_e^k`
+
+```bash
+gnuplot ./statistics/plot-6.3.gp
+```
+
+### 6.4. Abschätzung der Bilddefektwahrscheinlichkeit
+
+Die Bilddefektwahrscheinlichkeit hängt von der Anzahl der RTP-Pakete pro Bild und der Kanalfehlerrate ab. 
+Für ein Bild mit nur einem RTP-Paket tritt ein Bilddefekt auf, wenn dieses eine Paket verloren geht, 
+was die Wahrscheinlichkeit direkt auf die Kanalfehlerrate setzt. Bei mehreren RTP-Paketen pro Bild (z. B. 5 oder 20) 
+tritt ein Bilddefekt auf, wenn mehr als ein Paket verloren geht, und die Wahrscheinlichkeit lässt sich durch 
+die Berechnung der Verlustwahrscheinlichkeit für mehr als ein Paket in einem Block ermitteln.
+
+Dazu wurde im Gnuplot Skript die folgende Formel verwendet:
+
+`image_defect(k, P) = (1 - (1 - P)**k) ** (k > 1)`
+
+Hierbei ist resultiert die Expression `k > 1` bei `k = 1` in einem Wert 0, was zur Folge hat, dass die
+die Defektwahrscheinlichkeit einfach als 1 angenommen wird. Für allgemeine Fälle (5, 20) resultiert also
+nur:
+
+`image_defect(k, P) = 1 - (1 - P)**k`
+
+```bash 
+gnuplot ./statistics/plot-6.4.gp
+```
 
 ## 7. Generierung von Restart-Markern
 
