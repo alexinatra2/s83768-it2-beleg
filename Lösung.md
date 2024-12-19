@@ -1,5 +1,7 @@
 # Lösung
 
+## 0. Allgemeines Vorgehen
+
 ## 1. Client Methoden
 
 [RtpPacket](src/rtp/RtpPacket.java) 
@@ -119,6 +121,4 @@ im Vergleich zum Original intakt bleibt. Das Original ist vollständig zerstört
 ## 8. Fehlerkaschierung
 
 [JpegDisplay](src/JpegDisplay.java)
-
-## 11. Dokumentation
 
