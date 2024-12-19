@@ -8,7 +8,7 @@ set title "Vergleich von Restfehler und Gesamtfehler für verschiedene Gruppengr
 # Configure grid and style
 set grid
 set style data linespoints
-set key outside
+set key right bottom
 
 # Plot total and residual error rates for all k values
 plot \
@@ -20,3 +20,6 @@ plot \
     "k12_data.dat" using 1:($4/$2) with linespoints title "Restfehlerquote (k=12)" lc rgb "light-green", \
     "k48_data.dat" using 1:1 with linespoints title "Gesamtfehlerquote (k=48)" lc rgb "orange", \
     "k48_data.dat" using 1:($4/$2) with linespoints title "Restfehlerquote (k=48)" lc rgb "yellow"
+    
+pause -1
+
