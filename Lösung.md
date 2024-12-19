@@ -31,7 +31,7 @@ gnuplot ./statistics/plot-4.gp
 
 ### 6.1. Parameterwahl
 
-Bei einer Kanalverlustrate von 10% beim Einsatz von FEC mit k=2 wurden nach etwa 10 Sekunden
+Bei einer Kanalverlustrate von 10 % beim Einsatz von FEC mit k=2 wurden nach etwa 10 Sekunden
 223 RTP-Pakete verloren bei RTP-Index 2229. Die reale Kanalverlustrate war also folgende
 
 ```
@@ -96,7 +96,7 @@ Dazu wurde im Gnuplot Skript die folgende Formel verwendet:
 `image_defect(k, P) = (1 - (1 - P)**k) ** (k > 1)`
 
 Hierbei ist resultiert die Expression `k > 1` bei `k = 1` in einem Wert 0, was zur Folge hat, dass die
-die Defektwahrscheinlichkeit einfach als 1 angenommen wird. Für allgemeine Fälle (5, 20) resultiert also
+Defektwahrscheinlichkeit einfach als 1 angenommen wird. Für allgemeine Fälle (5, 20) resultiert also
 nur:
 
 `image_defect(k, P) = 1 - (1 - P)**k`
@@ -107,7 +107,7 @@ gnuplot ./statistics/plot-6.4.gp
 
 ## 7. Generierung von Restart-Markern
 
-In [restart-markers](images/restart-markers/) befinden sich alle Bilder für diese
+In [restart-markers](images/restart-markers) befinden sich alle Bilder für diese
 Aufgabe. Folgende Dateien sind im Directory enthalten:
 
 - [das Original](images/restart-markers/htw-0080.jpeg)
