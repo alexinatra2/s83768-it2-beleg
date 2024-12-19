@@ -4,7 +4,20 @@
 
 ## 1. Client Methoden
 
-[RtpPacket](src/rtp/RtpPacket.java) 
+Der Code für diese Aufgabe ist in der Klasse 
+[RtpPacket](src/rtsp/Rtsp.java) zu finden.
+
+Die Methoden implementieren die grundlegende RTSP-Funktionalität. Die Methoden `play`, 
+`pause` und `teardown` verwalten die Zustandsübergänge und senden die entsprechenden 
+RTSP-Anfragen. Die Zustandsübergänge sind wie folgt implementiert:
+
+- Von READY zu PLAYING nach erfolgreichem PLAY-Request.
+- Von PLAYING zu READY nach erfolgreichem PAUSE-Request.
+- Von READY oder PLAYING zu INIT nach erfolgreichem TEARDOWN-Request.
+ 
+Die Methoden `describe` und `options` fragen Informationen vom Server ab. 
+Die Methode `send_RTSP_request` erstellt und sendet RTSP-Anfragen verarbeitet 
+dabei Header wie `CSeq`, `Transport` und `Session`.
 
 ## 2. SDP-Protokoll 
 
