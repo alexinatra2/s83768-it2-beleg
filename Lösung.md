@@ -4,8 +4,7 @@
 
 ## 1. Client Methoden
 
-Der Code für diese Aufgabe ist in der Klasse 
-[RtpPacket](src/rtsp/Rtsp.java) zu finden.
+Der Code für diese Aufgabe ist in der Klasse [`rtsp.Rtsp`](src/rtsp/Rtsp.java) zu finden.
 
 Die Methoden implementieren die grundlegende RTSP-Funktionalität. Die Methoden `play`, 
 `pause` und `teardown` verwalten die Zustandsübergänge und senden die entsprechenden 
@@ -21,11 +20,30 @@ dabei Header wie `CSeq`, `Transport` und `Session`.
 
 ## 2. SDP-Protokoll 
 
-[RtpPacket](src/rtp/RtpPacket.java) 
+Der Code für diese Aufgabe ist wie in Aufgabe 1 in der Klasse 
+[`rtsp.Rtsp`](src/rtsp/Rtsp.java) zu finden.
+
+Die Methode `getDescribe()` wurde so implementiert, dass sie eine statische SDP-Antwort 
+(Session Description Protocol) für einen MJPEG-Stream zurückgibt. Die wichtigsten Parameter, 
+wie die Framerate des Videos und die Dauer (falls vorhanden), werden aus den Metadaten des Videos übernommen. 
+Die Antwort wird als String aufgebaut, der die notwendigen Felder für das SDP-Protokoll enthält, 
+einschließlich der Protokollversion, Origin-Informationen, Session-Details und der Medienbeschreibung 
+für den MJPEG-Stream. 
+Eine logische Darstellung dieser Antwort wird dann in der Konsole ausgegeben.
 
 ## 3. RTP-Protokoll
 
-[RtpPacket](src/rtp/RtpPacket.java) 
+Der Code für diese Aufgabe befindet sich in der Klass [`RtpPacket`](src/rtp/RtpPacket.java).
+
+Die Methode `setRtpHeader()` setzt die RTP-Header-Felder gemäß der RTP-Spezifikation. 
+Sie arbeitet mit den vordefinierten Feldern wie Version, Padding, Marker, Payload Type, Sequence Number, Timestamp und SSRC. 
+Der Header wird byteweise aufgebaut, wobei jedes Byte entsprechend seiner Position und Bedeutung gesetzt wird.
+
+- Byte 0 setzt die Version (2), Padding (0), Extension (0) und CC (0) entsprechend der RTP-Spezifikation.
+- Byte 1 kombiniert den Marker (1 Bit) und den Payload Type (7 Bits).
+- Byte 2-3 setzen die Sequence Number als 16-Bit-Wert.
+- Byte 4-7 setzen den Timestamp als 32-Bit-Wert.
+- Byte 8-11 setzen die SSRC (Synchronization Source Identifier) als 32-Bit-Wert.
 
 ## 4. Auswertung der Fehlerstatistiken ohne Fehlerkorrektur
 
@@ -38,7 +56,13 @@ gnuplot ./statistics/plot-4.gp
 
 ## 5. Implementierung des FEC-Schutzes
 
-[FecHandler](src/rtp/FecHandler.java)
+Für die Lösung dieser Aufgabe wurden in [`FecHandler`](src/rtp/FecHandler.java) `checkCorrection` und `correctRtp`
+überschrieben. 
+
+Damit ein Paket korrigiert mit FEC korrigiert werden kann, muss die Anzahl der Fehler in einer FEC-Gruppe genau 
+1 betragen. Dies wird in der `checkCorrection` Methode ermittelt. Sollte dies der Fall sein wird `correctRtp`
+aufgerufen und mittels XOR, das Paket wiederhergestellt. Der XOR Call verbirgt sich hierbei hinter der `addRtp`
+Methode, welche iterativ für alle anwesenden Gruppenpakete aufgerufen wird. 
 
 ## 6. Analyse der Leistungsfähigkeit des implementierten FEC-Verfahrens
 
@@ -133,5 +157,10 @@ im Vergleich zum Original intakt bleibt. Das Original ist vollständig zerstört
 
 ## 8. Fehlerkaschierung
 
-[JpegDisplay](src/JpegDisplay.java)
+Der Code für diese Aufgabe befindet sich in der Klasse [`JpegDisplay`](src/JpegDisplay.java). 
 
+Die Liste im Argument von `setTransparency` enthält die Indices der verlorenen JPEG Restart-Slices.
+Diese haben eine Höhe von 16 Pixeln, da eine MCU (Minimum Coded Unit) in unserem Beispiel 16x16 Pixel groß ist. 
+An diesen Stellen wird der das Vordergrundbild auf diesem Slice transparent gesetzt.
+Das finale Bild setzt sich dann aus Vorder- und Hintergrundbild zusammen, wobei das Hintergrundbild das Bild des
+vorangegangenen Frames ist.
